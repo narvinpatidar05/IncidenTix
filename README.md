@@ -4,16 +4,42 @@ AI-powered incident root-cause-analysis (RCA) agent — investigates production 
 
 This project is in early development. The current focus is an RCA-service-first approach: data ingestion, webhooks, and multi-tenant onboarding come later.
 
-## Run the RCA service
+## Run
 
 ```bash
-cd rca-service
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn main:app --reload
+cp .env.example .env
+uvicorn app.main:app --reload
 ```
 
 - API: http://127.0.0.1:8000
 - Health: http://127.0.0.1:8000/health
+- Versioned health: http://127.0.0.1:8000/api/v1/health
 - Docs: http://127.0.0.1:8000/docs
+
+```bash
+pytest
+```
+
+## Layout
+
+Request flow: **route → controller → service → repository**.
+
+```
+app/
+├── main.py                 # FastAPI app factory
+├── api/v1/
+│   ├── routes/             # HTTP paths only
+│   └── controllers/        # request/response mapping
+├── services/               # business logic
+├── repositories/           # data access (DB/queue later)
+├── models/                 # domain objects
+├── schemas/                # Pydantic API contracts
+├── core/                   # config, constants, logging, errors
+└── utils/
+agent/                      # RCA agent loop (later)
+outputs/                    # run traces (gitignored)
+tests/
+```
