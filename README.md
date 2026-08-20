@@ -2,8 +2,6 @@
 
 AI-powered incident root-cause-analysis (RCA) agent — investigates production alerts using an agentic tool-use loop (logs, metrics, deploy history) and produces structured root-cause findings.
 
-Early development. RCA-service first; webhooks and multi-tenant onboarding come later.
-
 ## Run
 
 ```bash
@@ -16,6 +14,17 @@ uvicorn app.main:app --reload
 
 - Health: http://127.0.0.1:8000/health
 - Docs: http://127.0.0.1:8000/docs
+
+## Lint and format
+
+```bash
+pip install -r requirements-dev.txt
+ruff check .
+ruff format .
+pre-commit install
+```
+
+`pre-commit install` ke baad har `git commit` pe lint/format hooks chalenge.
 
 ## Layout
 
