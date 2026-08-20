@@ -1,6 +1,6 @@
 def test_tools_module_imports() -> None:
-    import tools.logs
-    import tools.registry
+    import app.tools.logs
+    import app.tools.registry
 
-    assert tools.registry.__doc__
-    assert tools.logs.__doc__
+    assert app.tools.registry.__doc__
+    assert app.tools.logs.__doc__

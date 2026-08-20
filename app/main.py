@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from api.investigations import router as investigations_router
+from app.api.investigations import router as investigations_router
 
 app = FastAPI(
     title="incidenTix",

@@ -2,6 +2,7 @@
 
 AI-powered incident root-cause-analysis (RCA) agent — investigates production alerts using an agentic tool-use loop (logs, metrics, deploy history) and produces structured root-cause findings.
 
+Early development. RCA-service first; webhooks and multi-tenant onboarding come later.
 
 ## Run
 
@@ -19,12 +20,17 @@ uvicorn app.main:app --reload
 ## Layout
 
 ```
-app/main.py              # FastAPI server
-api/                     # HTTP routes
-agent/                   # RCA agent loop (later)
-tools/                   # agent tools (later)
-providers/               # Loki / metrics adapters (later)
-models/                  # domain objects
-incidents/               # mocked incident fixtures
+app/                 # production application
+  main.py            # FastAPI server
+  api/               # HTTP routes
+  agent/             # RCA agent loop (later)
+  tools/             # agent tools (later)
+  providers/         # Loki / metrics adapters (later)
+  models/            # domain objects
 tests/
+migrations/          # DB migrations (later)
+scripts/             # seed / replay helpers
+evals/               # LLM eval datasets + runner
+deployments/         # docker / k8s (later)
+docs/
 ```
