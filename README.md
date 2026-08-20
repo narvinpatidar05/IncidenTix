@@ -20,17 +20,12 @@ uvicorn app.main:app --reload
 ## Layout
 
 ```
-app/                 # production application
+app/
   main.py            # FastAPI server
   api/               # HTTP routes
-  agent/             # RCA agent loop (later)
+  agent/             # RCA agent (later)
   tools/             # agent tools (later)
   providers/         # Loki / metrics adapters (later)
   models/            # domain objects
 tests/
-migrations/          # DB migrations (later)
-scripts/             # seed / replay helpers
-evals/               # LLM eval datasets + runner
-deployments/         # docker / k8s (later)
-docs/
 ```
