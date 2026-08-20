@@ -1,0 +1,10 @@
+[project]
+name = "incidentix"
+version = "0.1.0"
+description = "AI-powered incident root-cause-analysis (RCA) agent"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
