@@ -39,7 +39,5 @@ app/
 ├── schemas/                # Pydantic API contracts
 ├── core/                   # config, constants, logging, errors
 └── utils/
-agent/                      # RCA agent loop (later)
-outputs/                    # run traces (gitignored)
 tests/
 ```

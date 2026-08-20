@@ -5,13 +5,18 @@ __pycache__/
 # Environment
 .env
 
-# RCA run results / traces
-**/outputs/*
-!**/outputs/.gitkeep
+# RCA run results / traces (created at runtime)
+outputs/
 
 # Virtual environments
 venv/
 .venv/
+
+# Accidental `python -m venv .` leftovers at repo root
+/bin/
+/include/
+/lib/
+/pyvenv.cfg
 
 # Tests / build
 .pytest_cache/
