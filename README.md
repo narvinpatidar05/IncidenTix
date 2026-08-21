@@ -58,3 +58,7 @@ src/
     common/                # shared helpers across features
 tests/
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, branch names, commits, and PRs.
