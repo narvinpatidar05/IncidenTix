@@ -2,6 +2,7 @@
 
 AI-powered incident root-cause-analysis (RCA) agent — investigates production alerts using an agentic tool-use loop (logs, metrics, deploy history) and produces structured root-cause findings.
 
+Dependency updates are automated via Dependabot (weekly). Do not bump package versions by hand unless a change needs a specific version.
 
 ## Run
 
