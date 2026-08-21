@@ -2,7 +2,6 @@
 
 AI-powered incident root-cause-analysis (RCA) agent — investigates production alerts using an agentic tool-use loop (logs, metrics, deploy history) and produces structured root-cause findings.
 
-Early development. RCA-service first; webhooks and multi-tenant onboarding come later.
 
 ## Run
 
