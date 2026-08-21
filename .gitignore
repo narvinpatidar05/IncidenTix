@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Virtual environments
+venv/
+.venv/
+
+# Tests / tooling
+.pytest_cache/
+.ruff_cache/
+.pre-commit-cache/
+.mypy_cache/
+.tox/
+*.egg-info/
+build/
+dist/
+
+# macOS / IDEs
+.DS_Store
+.vscode/
+.idea/

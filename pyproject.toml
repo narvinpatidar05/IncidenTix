@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "incidentix"
+version = "0.1.0"
+description = "AI-powered incident root-cause-analysis (RCA) agent"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "mypy",
+    "pre-commit",
+    "import-linter",
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["incidentix*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "tests"]
+ignore_missing_imports = true
+disallow_untyped_defs = false
+
+[tool.importlinter]
+root_package = "incidentix"
+
+[[tool.importlinter.contracts]]
+name = "Feature modules must not import worker"
+type = "forbidden"
+source_modules = [
+    "incidentix.agent",
+    "incidentix.incident",
+    "incidentix.provider",
+]
+forbidden_modules = [
+    "incidentix.worker",
+]
