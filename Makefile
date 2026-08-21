@@ -1,11 +1,8 @@
-.PHONY: install lint test format
-
 VENV := .venv
 BIN := $(VENV)/bin
-PYTHON := python3.11
 
 install:
-	$(PYTHON) -m venv $(VENV)
+	python3 -m venv $(VENV)
 	$(BIN)/pip install --upgrade pip
 	$(BIN)/pip install -e ".[dev]"
 	$(BIN)/pre-commit install
