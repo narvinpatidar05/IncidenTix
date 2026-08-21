@@ -48,6 +48,7 @@ Common types: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`
 - Do not push to `main`. Open a PR.
 - CI checks must pass before merge.
 - Opening a PR fills in [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md). Use that checklist; do not copy it here.
+- For notable or user-facing changes, add a one-line entry under `[Unreleased]` in [CHANGELOG.md](CHANGELOG.md) in the same PR.
 
 ## Architecture rule
 
