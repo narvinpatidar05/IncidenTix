@@ -5,6 +5,7 @@ BIN := $(VENV)/bin
 
 install:
 	python3 -m venv $(VENV)
+	$(BIN)/pip install --upgrade pip
 	$(BIN)/pip install -e ".[dev]"
 	$(BIN)/pre-commit install
 	$(BIN)/pre-commit install --hook-type commit-msg
