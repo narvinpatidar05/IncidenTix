@@ -2,6 +2,8 @@
 
 Project overview and how to run the app: [README.md](README.md).
 
+By participating, you agree to our [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Local development setup
 
 ```bash
