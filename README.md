@@ -2,13 +2,18 @@
 
 AI-powered incident root-cause-analysis (RCA) agent — investigates production alerts using an agentic tool-use loop (logs, metrics, deploy history) and produces structured root-cause findings.
 
+## Setup
+
+```
+make install
+```
+
+Creates `.venv`, installs runtime and dev dependencies (`ruff`, `mypy`, `pre-commit`, `import-linter`, `pytest`), and enables pre-commit, commit-msg, and pre-push hooks.
 
 ## Run
 
 ```
-python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
 cp .env.example .env
 uvicorn src.incidentix.main:app --reload
 ```
@@ -16,16 +21,15 @@ uvicorn src.incidentix.main:app --reload
 * Health: http://127.0.0.1:8000/health
 * Docs: http://127.0.0.1:8000/docs
 
-## Lint and format
+## Lint, format, and test
 
 ```
-pip install -r requirements-dev.txt
-ruff check .
-ruff format .
-pre-commit install
+make lint
+make format
+make test
 ```
 
-After `pre-commit install`, every `git commit` runs lint and format hooks.
+Activate `.venv` before committing so local hooks (`import-linter`, `pytest`) are on `PATH`. Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, …). Tests run on `git push`, not on every commit.
 
 ## Layout
 
@@ -48,6 +52,7 @@ src/
     provider/             # Loki / metrics adapters (later)
       models.py
       service.py
+    worker/               # background jobs (later)
     common/                # shared helpers across features
 tests/
 ```

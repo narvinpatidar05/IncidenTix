@@ -1,4 +1,1 @@
--r requirements.txt
-ruff
-pre-commit
-pytest
+-e ".[dev]"
