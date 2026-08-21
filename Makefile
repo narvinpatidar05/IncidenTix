@@ -2,9 +2,10 @@
 
 VENV := .venv
 BIN := $(VENV)/bin
+PYTHON := python3.11
 
 install:
-	python3 -m venv $(VENV)
+	$(PYTHON) -m venv $(VENV)
 	$(BIN)/pip install --upgrade pip
 	$(BIN)/pip install -e ".[dev]"
 	$(BIN)/pre-commit install
