@@ -44,7 +44,7 @@ Common types: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`
 ## Pull requests
 
 - Do not push to `main`. Open a PR.
-- CI checks must pass before merge (when the pipeline exists).
+- CI checks must pass before merge.
 - Opening a PR fills in [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md). Use that checklist; do not copy it here.
 
 ## Architecture rule
