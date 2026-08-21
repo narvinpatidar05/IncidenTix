@@ -16,6 +16,17 @@ uvicorn src.incidentix.main:app --reload
 * Health: http://127.0.0.1:8000/health
 * Docs: http://127.0.0.1:8000/docs
 
+## Lint and format
+
+```
+pip install -r requirements-dev.txt
+ruff check .
+ruff format .
+pre-commit install
+```
+
+After `pre-commit install`, every `git commit` runs lint and format hooks.
+
 ## Layout
 
 ```
