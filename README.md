@@ -6,26 +6,38 @@ Early development. RCA-service first; webhooks and multi-tenant onboarding come 
 
 ## Run
 
-```bash
+```
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-uvicorn app.main:app --reload
+uvicorn src.incidentix.main:app --reload
 ```
 
-- Health: http://127.0.0.1:8000/health
-- Docs: http://127.0.0.1:8000/docs
+* Health: http://127.0.0.1:8000/health
+* Docs: http://127.0.0.1:8000/docs
 
 ## Layout
 
 ```
-app/
-  main.py            # FastAPI server
-  api/               # HTTP routes
-  agent/             # RCA agent (later)
-  tools/             # agent tools (later)
-  providers/         # Loki / metrics adapters (later)
-  models/            # domain objects
+src/
+  incidentix/
+    main.py            # FastAPI server
+    config.py          # global settings
+    database.py        # global DB setup
+    exceptions.py      # global custom exceptions
+    agent/              # RCA agent orchestration (later)
+      models.py
+      service.py
+      tools/            # agent tools (later)
+    incident/            # core incident domain (later)
+      models.py
+      schemas.py
+      service.py
+      views.py
+    provider/             # Loki / metrics adapters (later)
+      models.py
+      service.py
+    common/                # shared helpers across features
 tests/
 ```
