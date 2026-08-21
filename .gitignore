@@ -1,25 +1,47 @@
-# Python
+# Bytecode / packaging
 __pycache__/
-*.pyc
-
-# Environment
-.env
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+.installed.cfg
+.Python
+build/
+dist/
+wheels/
+*.whl
 
 # Virtual environments
 venv/
 .venv/
+env/
 
-# Tests / tooling
+# Secrets and local env (keep the example)
+.env
+.env.*
+!.env.example
+
+# Tooling / test caches
 .pytest_cache/
 .ruff_cache/
 .pre-commit-cache/
 .mypy_cache/
 .tox/
-*.egg-info/
-build/
-dist/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.cache/
 
-# macOS / IDEs
+# Runtime artifacts
+*.log
+logs/
+outputs/
+
+# OS / editors
 .DS_Store
+Thumbs.db
 .vscode/
 .idea/
+*.swp
+.ipynb_checkpoints/

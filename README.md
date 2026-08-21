@@ -2,6 +2,8 @@
 
 AI-powered incident root-cause-analysis (RCA) agent — investigates production alerts using an agentic tool-use loop (logs, metrics, deploy history) and produces structured root-cause findings.
 
+Requires **Python 3.11+**. Licensed under [MIT](LICENSE). Copy `.env.example` to `.env` for local secrets — never commit `.env`.
+
 ## Setup
 
 ```
