@@ -2,10 +2,10 @@
 
 VENV := .venv
 BIN := $(VENV)/bin
-PYTHON := python3
+PYTHON := python3.11
 
 install:
-	@$(PYTHON) -c 'import sys; assert sys.version_info >= (3, 11), "Python 3.11+ is required. Install Python 3.11 or newer and try again."' 
+	@$(PYTHON) -c 'import sys; assert sys.version_info >= (3, 11), "Python 3.11+ is required. Install Python 3.11 or newer and try again."'
 	$(PYTHON) -m venv $(VENV)
 	$(BIN)/pip install --upgrade pip
 	$(BIN)/pip install -e ".[dev]"
@@ -23,4 +23,4 @@ format:
 	$(BIN)/ruff format src tests
 
 test:
-	$(BIN)/pytest
+	$(BIN)/pytest -v
