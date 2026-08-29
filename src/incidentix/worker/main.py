@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
     """Log worker startup and shutdown."""
     logger.info("incidentix-worker starting")
+    poll.pick_and_log()
     yield
     logger.info("incidentix-worker shutting down")
 
