@@ -6,8 +6,8 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from incidentix.worker.config import settings
-from incidentix.worker.routes import health, poll
+from .config import settings
+from .routes import health, poll
 
 logging.basicConfig(level=settings.log_level.upper())
 logger = logging.getLogger(__name__)

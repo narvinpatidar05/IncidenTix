@@ -1,16 +1,23 @@
 """Load mock incident JSON files from data/mock_issues/."""
 
-from __future__ import annotations
-
 import json
 from pathlib import Path
 
 from pydantic import ValidationError
 
-from incidentix.incident.models import Incident
+from .models import Incident
 
-_REPO_ROOT = Path(__file__).resolve().parents[3]
-MOCK_ISSUES_DIR = _REPO_ROOT / "data" / "mock_issues"
+
+def _repo_root() -> Path:
+    """Walk up from this file until pyproject.toml (repo root)."""
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "pyproject.toml").exists():
+            return parent
+    msg = "Could not find repo root (pyproject.toml)"
+    raise RuntimeError(msg)
+
+
+MOCK_ISSUES_DIR = _repo_root() / "data" / "mock_issues"
 
 _processed_paths: set[str] = set()
 
