@@ -6,8 +6,8 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from incidentix.worker.config import settings
-from incidentix.worker.routes import health, poll
+from .config import settings
+from .routes import health, poll
 
 logging.basicConfig(level=settings.log_level.upper())
 logger = logging.getLogger(__name__)
@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
     """Log worker startup and shutdown."""
     logger.info("incidentix-worker starting")
+    poll.pick_and_log()
     yield
     logger.info("incidentix-worker shutting down")
 

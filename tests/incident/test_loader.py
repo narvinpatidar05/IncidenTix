@@ -7,12 +7,6 @@ from pathlib import Path
 import pytest
 
 from incidentix.incident import loader
-from incidentix.incident.loader import (
-    IncidentLoadError,
-    list_mock_issues,
-    load_incident,
-    pick_next_issue,
-)
 from incidentix.incident.models import Incident
 
 VALID_INCIDENT = {
@@ -40,7 +34,7 @@ def _write_issue(directory: Path, name: str, payload: dict) -> Path:
 
 def test_list_mock_issues_missing_dir_returns_empty(mock_dir: Path) -> None:
     mock_dir.rmdir()
-    assert list_mock_issues() == []
+    assert loader.list_mock_issues() == []
 
 
 def test_list_mock_issues_returns_sorted_json_paths(mock_dir: Path) -> None:
@@ -50,13 +44,13 @@ def test_list_mock_issues_returns_sorted_json_paths(mock_dir: Path) -> None:
     (mock_dir / "nested").mkdir()
     _write_issue(mock_dir / "nested", "hidden.json", VALID_INCIDENT)
 
-    paths = list_mock_issues()
+    paths = loader.list_mock_issues()
     assert [path.name for path in paths] == ["a-first.json", "z-last.json"]
 
 
 def test_load_incident_parses_valid_json(mock_dir: Path) -> None:
     path = _write_issue(mock_dir, "issue.json", VALID_INCIDENT)
-    incident = load_incident(path)
+    incident = loader.load_incident(path)
     assert isinstance(incident, Incident)
     assert incident.id == "inc-001"
     assert incident.service == "payment-api"
@@ -68,19 +62,19 @@ def test_load_incident_parses_valid_json(mock_dir: Path) -> None:
 def test_load_incident_invalid_json_raises(mock_dir: Path) -> None:
     path = mock_dir / "bad.json"
     path.write_text("{not-json", encoding="utf-8")
-    with pytest.raises(IncidentLoadError, match="Malformed incident JSON"):
-        load_incident(path)
+    with pytest.raises(loader.IncidentLoadError, match="Malformed incident JSON"):
+        loader.load_incident(path)
 
 
 def test_load_incident_missing_fields_raises(mock_dir: Path) -> None:
     path = _write_issue(mock_dir, "incomplete.json", {"id": "inc-002"})
-    with pytest.raises(IncidentLoadError, match="Malformed incident data"):
-        load_incident(path)
+    with pytest.raises(loader.IncidentLoadError, match="Malformed incident data"):
+        loader.load_incident(path)
 
 
 def test_load_incident_missing_file_raises(mock_dir: Path) -> None:
-    with pytest.raises(IncidentLoadError, match="not found"):
-        load_incident(mock_dir / "nope.json")
+    with pytest.raises(loader.IncidentLoadError, match="not found"):
+        loader.load_incident(mock_dir / "nope.json")
 
 
 def test_pick_next_issue_returns_incidents_then_none(mock_dir: Path) -> None:
@@ -89,9 +83,9 @@ def test_pick_next_issue_returns_incidents_then_none(mock_dir: Path) -> None:
     _write_issue(mock_dir, "b.json", second)
     _write_issue(mock_dir, "a.json", first)
 
-    picked_first = pick_next_issue()
-    picked_second = pick_next_issue()
-    picked_third = pick_next_issue()
+    picked_first = loader.pick_next_issue()
+    picked_second = loader.pick_next_issue()
+    picked_third = loader.pick_next_issue()
 
     assert picked_first is not None and picked_first.id == "inc-a"
     assert picked_second is not None and picked_second.id == "inc-b"
@@ -99,4 +93,4 @@ def test_pick_next_issue_returns_incidents_then_none(mock_dir: Path) -> None:
 
 
 def test_pick_next_issue_empty_dir_returns_none(mock_dir: Path) -> None:
-    assert pick_next_issue() is None
+    assert loader.pick_next_issue() is None
