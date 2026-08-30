@@ -7,7 +7,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from incidentix.incident.models import Incident
+from .models import Incident
 
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 MOCK_ISSUES_DIR = _REPO_ROOT / "data" / "mock_issues"
