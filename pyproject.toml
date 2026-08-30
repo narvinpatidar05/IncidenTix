@@ -22,7 +22,8 @@ dev = [
     "pre-commit",
     "import-linter",
     "pytest",
-    "httpx2"
+    "httpx2",
+    "requests"
 ]
 
 [tool.setuptools.packages.find]
